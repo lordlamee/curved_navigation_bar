@@ -11,33 +11,32 @@ class NavCustomPainter extends CustomPainter {
     final span = 1.0 / itemsLength;
     s = 0.2;
     double l = startingLoc + (span - s) / 2;
-    loc = textDirection == TextDirection.rtl ? 0.8 - l : l;
+    loc = textDirection == TextDirection.rtl ? 0.9 - l : l;
   }
 
   @override
   void paint(Canvas canvas, Size size) {
+    print(loc);
     final paint = Paint()
       ..color = color
       ..style = PaintingStyle.fill;
 
     final path = Path()
       ..moveTo(0, 0)
-      ..lineTo((loc - 0.1) * size.width, 0)
-      ..cubicTo(
-        (loc + s * 0.20) * size.width,
-        size.height * 0.05,
-        loc * size.width,
-        size.height * 0.60,
-        (loc + s * 0.50) * size.width,
-        size.height * 0.60,
+      ..lineTo((loc + 0.025) * size.width, 0)
+      ..arcToPoint(
+        Offset(((loc + 0.025) * size.width) + 20, 20),
+        radius: Radius.circular(20),
+        clockwise: false,
       )
-      ..cubicTo(
-        (loc + s) * size.width,
-        size.height * 0.60,
-        (loc + s - s * 0.20) * size.width,
-        size.height * 0.05,
-        (loc + s + 0.1) * size.width,
-        0,
+      ..lineTo(
+        ((loc + 0.025) * size.width) + 40,
+        20,
+      )
+      ..arcToPoint(
+        Offset(((loc + 0.025) * size.width) + 60, 0),
+        radius: Radius.circular(20),
+        clockwise: false,
       )
       ..lineTo(size.width, 0)
       ..lineTo(size.width, size.height)

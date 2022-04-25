@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(home: BottomNavBar()));
 
@@ -19,12 +19,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
           key: _bottomNavigationKey,
           index: 0,
           height: 60.0,
-          items: <Widget>[
-            Icon(Icons.add, size: 30),
-            Icon(Icons.list, size: 30),
-            Icon(Icons.compare_arrows, size: 30),
-            Icon(Icons.call_split, size: 30),
-            Icon(Icons.perm_identity, size: 30),
+          items: [
+            NavButtonItem(icon: Icon(Icons.add, size: 30)),
+            NavButtonItem(icon: Icon(Icons.list, size: 30)),
+            NavButtonItem(icon: Icon(Icons.compare_arrows, size: 30)),
+            NavButtonItem(icon: Icon(Icons.call_split, size: 30)),
           ],
           color: Colors.white,
           buttonBackgroundColor: Colors.white,

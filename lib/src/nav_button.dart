@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'nav_item.dart';
+
 class NavButton extends StatelessWidget {
   final double position;
   final int length;
   final int index;
   final ValueChanged<int> onTap;
-  final Widget child;
+  final NavButtonItem child;
 
   NavButton({
     required this.onTap,
@@ -34,7 +36,7 @@ class NavButton extends StatelessWidget {
                   0, difference < 1.0 / length ? verticalAlignment * 40 : 0),
               child: Opacity(
                   opacity: difference < 1.0 / length * 0.99 ? opacity : 1.0,
-                  child: child),
+                  child: Center(child: child.icon)),
             )),
       ),
     );

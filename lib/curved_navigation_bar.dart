@@ -1,12 +1,15 @@
+import 'package:curved_navigation_bar/src/nav_item.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+
 import 'src/nav_button.dart';
 import 'src/nav_custom_painter.dart';
+
+export 'src/nav_item.dart';
 
 typedef _LetIndexPage = bool Function(int value);
 
 class CurvedNavigationBar extends StatefulWidget {
-  final List<Widget> items;
+  final List<NavButtonItem> items;
   final int index;
   final Color color;
   final Color? buttonBackgroundColor;
@@ -53,7 +56,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
   @override
   void initState() {
     super.initState();
-    _icon = widget.items[widget.index];
+    _icon = widget.items[widget.index].icon;
     _length = widget.items.length;
     _pos = widget.index / _length;
     _startingPos = widget.index / _length;
@@ -64,7 +67,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
         final endingPos = _endingIndex / widget.items.length;
         final middle = (endingPos + _startingPos) / 2;
         if ((endingPos - _pos).abs() < (_startingPos - _pos).abs()) {
-          _icon = widget.items[_endingIndex];
+          _icon = widget.items[_endingIndex].icon;
         }
         _buttonHide =
             (1 - ((middle - _pos) / (_startingPos - middle)).abs()).abs();
@@ -101,7 +104,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
         alignment: Alignment.bottomCenter,
         children: <Widget>[
           Positioned(
-            bottom: -40 - (75.0 - widget.height),
+            bottom: -15 - (75.0 - widget.height),
             left: Directionality.of(context) == TextDirection.rtl
                 ? null
                 : _pos * size.width,
@@ -117,7 +120,10 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                 ),
                 child: Material(
                   color: widget.buttonBackgroundColor ?? widget.color,
-                  type: MaterialType.circle,
+                  type: MaterialType.card,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: _icon,
@@ -151,7 +157,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                     position: _pos,
                     length: _length,
                     index: widget.items.indexOf(item),
-                    child: Center(child: item),
+                    child: item,
                   );
                 }).toList())),
           ),
