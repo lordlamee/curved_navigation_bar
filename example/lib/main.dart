@@ -20,7 +20,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
           index: 0,
           height: 60.0,
           items: [
-            NavButtonItem(icon: Icon(Icons.add, size: 30)),
+            NavButtonItem(
+              icon: Icon(Icons.add, size: 30),
+              label: 'Home',
+            ),
             NavButtonItem(icon: Icon(Icons.list, size: 30)),
             NavButtonItem(icon: Icon(Icons.compare_arrows, size: 30)),
             NavButtonItem(icon: Icon(Icons.call_split, size: 30)),

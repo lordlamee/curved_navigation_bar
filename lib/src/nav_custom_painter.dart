@@ -23,6 +23,11 @@ class NavCustomPainter extends CustomPainter {
 
     final path = Path()
       ..moveTo(0, 0)
+      ..lineTo(0, 13)
+      ..arcToPoint(
+        Offset(13, 0),
+        radius: Radius.circular(13),
+      )
       ..lineTo((loc + 0.025) * size.width, 0)
       ..arcToPoint(
         Offset(((loc + 0.025) * size.width) + 20, 20),
@@ -38,7 +43,11 @@ class NavCustomPainter extends CustomPainter {
         radius: Radius.circular(20),
         clockwise: false,
       )
-      ..lineTo(size.width, 0)
+      ..lineTo(size.width - 13, 0)
+      ..arcToPoint(
+        Offset(size.width, 13),
+        radius: Radius.circular(13),
+      )
       ..lineTo(size.width, size.height)
       ..lineTo(0, size.height)
       ..close();

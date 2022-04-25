@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'nav_item.dart';
@@ -30,14 +31,23 @@ class NavButton extends StatelessWidget {
           onTap(index);
         },
         child: Container(
-            height: 75.0,
-            child: Transform.translate(
-              offset: Offset(
-                  0, difference < 1.0 / length ? verticalAlignment * 40 : 0),
-              child: Opacity(
-                  opacity: difference < 1.0 / length * 0.99 ? opacity : 1.0,
-                  child: Center(child: child.icon)),
-            )),
+          height: 75.0,
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: 15,
+              ),
+              child: Text(
+                child.label ?? '',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15,
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
